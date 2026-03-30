@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>heymi — I don't code. I vibe.</title>
+<meta name="description" content="Simple, beautiful tools for your desktop. Made with vibe coding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --card: #111111;
+    --border: #1a1a1a;
+    --text: #e5e5e5;
+    --muted: #666;
+    --accent: #A78BFA;
+    --accent2: #E879F9;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-size: 20px; font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    margin-left: 32px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    padding: 160px 40px 100px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 224, 102, 0.1);
+    border: 1px solid rgba(255, 224, 102, 0.2);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+
+  h1 .gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 48px;
+  }
+
+  /* Apps Grid */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .app-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-card:hover {
+    border-color: rgba(255, 224, 102, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .app-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .app-card h3 {
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .app-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .app-card .tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .tag-free {
+    background: rgba(52, 211, 153, 0.1);
+    color: #34D399;
+  }
+
+  .tag-soon {
+    background: rgba(255, 224, 102, 0.1);
+    color: var(--accent);
+  }
+
+  .tag-download {
+    background: rgba(255, 224, 102, 0.15);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+
+  .app-card:hover .tag-download {
+    background: rgba(255, 224, 102, 0.25);
+  }
+
+  /* About */
+  .about {
+    text-align: center;
+    padding: 80px 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-avatar {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 800;
+    color: #0a0a0a;
+  }
+
+  .about h2 {
+    font-size: 24px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .about p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 32px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .social-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .social-links a:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px;
+    color: #333;
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 120px 20px 60px; }
+    h1 { font-size: 36px; }
+    .hero p { font-size: 16px; }
+    .section { padding: 40px 20px; }
+    .apps-grid { grid-template-columns: 1fr; }
+    .nav-links a { margin-left: 20px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">heymi</a>
+  <div class="nav-links">
+    <a href="#apps">Apps</a>
+    <a href="#about">About</a>
+    <a href="https://github.com/heymi-dev">GitHub</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge">I don't code. I vibe.</div>
+  <h1>Tiny tools,<br><span class="gradient">big vibes.</span></h1>
+  <p>Simple, beautiful desktop tools made with vibe coding. No bloat. No subscriptions. Just tools that work.</p>
+</section>
+
+<section class="section" id="apps">
+  <div class="section-title">Apps</div>
+  <div class="apps-grid">
+
+    <a href="https://github.com/heymi-dev/heymi-memo/releases/latest" class="app-card">
+      <div class="icon" style="background: rgba(255, 224, 102, 0.15);">📝</div>
+      <h3>heymi memo</h3>
+      <p>Sticky notes for your desktop. Pin, color, organize. Always on top when you need it.</p>
+      <span class="tag-download">↓ Download</span>
+    </a>
+
+    <div class="app-card" style="cursor: default; opacity: 0.5;">
+      <div class="icon" style="background: rgba(255, 107, 157, 0.15);">⏱️</div>
+      <h3>heymi timer</h3>
+      <p>Minimal timer & stopwatch. Stays on your screen without getting in the way.</p>
+      <span class="tag tag-soon">Coming Soon</span>
+    </div>
+
+    <div class="app-card" style="cursor: default; opacity: 0.5;">
+      <div class="icon" style="background: rgba(96, 165, 250, 0.15);">📸</div>
+      <h3>heymi capture</h3>
+      <p>Screenshot tool that doesn't suck. Capture, annotate, share. That's it.</p>
+      <span class="tag tag-soon">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-avatar">h</div>
+  <h2>Made by heymi</h2>
+  <p>I'm a vibe coder. I don't write code — I describe what I want and AI builds it. These are the tools I wished existed, so I made them.</p>
+  <div class="social-links">
+    <a href="https://github.com/heymi-dev">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 heymi. All rights reserved.
+</footer>
+
+</body>
+</html>
